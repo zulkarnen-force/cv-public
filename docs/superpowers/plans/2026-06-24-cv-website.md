@@ -193,10 +193,24 @@ export default defineConfig({
 });
 ```
 
-- [ ] **Step 10: Create `vitest.setup.ts`**
+- [ ] **Step 10: Create `vitest.setup.ts`** (jest-dom matchers + IntersectionObserver stub for jsdom)
 
 ```ts
 import "@testing-library/jest-dom/vitest";
+
+// jsdom has no IntersectionObserver; the Reveal component uses it in useEffect.
+if (!("IntersectionObserver" in globalThis)) {
+  class IntersectionObserverStub {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+    takeRecords() {
+      return [];
+    }
+  }
+  // @ts-expect-error assigning a test stub
+  globalThis.IntersectionObserver = IntersectionObserverStub;
+}
 ```
 
 - [ ] **Step 11: Create `.gitignore`**
@@ -591,21 +605,14 @@ export function Container({
 ```tsx
 export function SectionHeading({
   id,
-  eyebrow,
   children,
 }: {
   id: string;
-  eyebrow?: string;
   children: React.ReactNode;
 }) {
   return (
     <div className="mb-10">
       <span id={id} className="block scroll-mt-24" aria-hidden />
-      {eyebrow ? (
-        <p className="mb-2 text-sm font-medium uppercase tracking-widest text-muted">
-          {eyebrow}
-        </p>
-      ) : null}
       <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
         {children}
       </h2>
@@ -931,9 +938,7 @@ export function About() {
     <section className="py-20 sm:py-24">
       <Container>
         <Reveal>
-          <SectionHeading id="about" eyebrow="About">
-            Who I am
-          </SectionHeading>
+          <SectionHeading id="about">About</SectionHeading>
           <div className="space-y-4 text-base leading-relaxed text-foreground sm:text-lg">
             {about.map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
@@ -1031,9 +1036,7 @@ export function Experience() {
   return (
     <section className="py-20 sm:py-24">
       <Container>
-        <SectionHeading id="experience" eyebrow="Experience">
-          Where I&apos;ve worked
-        </SectionHeading>
+        <SectionHeading id="experience">Experience</SectionHeading>
         <ol className="relative border-l border-border">
           {experience.map((role) => (
             <li key={`${role.company}-${role.period}`} className="mb-12 ml-6 last:mb-0">
@@ -1101,7 +1104,8 @@ describe("Projects", () => {
     for (const project of projects) {
       expect(screen.getByRole("heading", { level: 3, name: project.name })).toBeInTheDocument();
       expect(screen.getByText(project.client)).toBeInTheDocument();
-      expect(screen.getByText(project.tags[0])).toBeInTheDocument();
+      // tags[0] ("Next.js") repeats across projects, so assert at least one match
+      expect(screen.getAllByText(project.tags[0]).length).toBeGreaterThan(0);
     }
   });
 });
@@ -1125,9 +1129,7 @@ export function Projects() {
   return (
     <section className="py-20 sm:py-24">
       <Container>
-        <SectionHeading id="projects" eyebrow="Projects">
-          Selected work
-        </SectionHeading>
+        <SectionHeading id="projects">Projects</SectionHeading>
         <div className="grid gap-6 sm:grid-cols-2">
           {projects.map((project) => (
             <Reveal key={project.name}>
@@ -1228,9 +1230,7 @@ export function Contact() {
     <section className="py-20 sm:py-24">
       <Container>
         <Reveal>
-          <SectionHeading id="contact" eyebrow="Contact">
-            Get in touch
-          </SectionHeading>
+          <SectionHeading id="contact">Contact</SectionHeading>
           <p className="max-w-2xl text-base leading-relaxed text-foreground sm:text-lg">
             Open to backend, full-stack, and platform roles. The quickest ways to reach me:
           </p>
