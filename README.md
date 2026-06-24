@@ -30,8 +30,19 @@ Both serve on http://localhost:3000.
 ## Content
 
 All CV content lives in `content/cv.ts` — edit there. Replace `public/cv.pdf` with the
-real resume; the Hero "Download CV" button links to it. Before deploying, also add a real
-`public/og-image.png` and set the actual domain in `metadataBase` in `app/layout.tsx`.
+real resume; the Hero "Download CV" button links to it.
+
+## SEO
+
+- `app/layout.tsx` — page metadata, OpenGraph/Twitter tags, and `Person` JSON-LD
+  structured data. The domain is set via `SITE_URL` there and in
+  `app/robots.ts` / `app/sitemap.ts`.
+- `app/robots.ts` → emits `/robots.txt`; `app/sitemap.ts` → emits `/sitemap.xml`
+  (generated as static files at build time).
+- `public/og-image.png` — 1200×630 social share image.
+
+After deploying, verify ownership in [Google Search Console](https://search.google.com/search-console)
+and submit `https://zulkarnen.web.id/sitemap.xml` under **Sitemaps**.
 
 ## Project layout
 
