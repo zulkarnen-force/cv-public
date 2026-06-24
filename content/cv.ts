@@ -24,12 +24,14 @@ export interface Project {
   client: string;
   description: string;
   tags: string[];
+  url: string;
+  cover: string;
 }
 
 export interface ContactLink {
   label: string;
   href: string;
-  kind: "email" | "linkedin" | "github";
+  kind: "email" | "linkedin" | "github" | "medium";
 }
 
 export const profile: Profile = {
@@ -47,10 +49,21 @@ export const about: string[] = [
 ];
 
 export const skills: SkillGroup[] = [
-  { category: "Languages", items: ["Go", "JavaScript", "TypeScript", "PHP", "Python", "Bash"] },
+  {
+    category: "Languages",
+    items: ["Go", "JavaScript", "TypeScript", "PHP", "Python", "Bash"],
+  },
   {
     category: "Backend & APIs",
-    items: ["REST APIs", "Gin (Go)", "Express.js", "FastAPI", "Flask", "Laravel", "CodeIgniter"],
+    items: [
+      "REST APIs",
+      "Gin (Go)",
+      "Express.js",
+      "FastAPI",
+      "Flask",
+      "Laravel",
+      "CodeIgniter",
+    ],
   },
   { category: "Frontend", items: ["Next.js", "React"] },
   {
@@ -59,7 +72,11 @@ export const skills: SkillGroup[] = [
   },
   {
     category: "Testing & QA",
-    items: ["Unit (Jest, Vitest)", "Integration testing", "End-to-End (Playwright)"],
+    items: [
+      "Unit (Jest, Vitest)",
+      "Integration testing",
+      "End-to-End (Playwright)",
+    ],
   },
   {
     category: "Messaging & Storage",
@@ -80,8 +97,14 @@ export const skills: SkillGroup[] = [
       "NFS",
     ],
   },
-  { category: "Observability", items: ["Prometheus", "Grafana", "Loki", "Promtail"] },
-  { category: "Cloud / Hosting", items: ["Bare-metal VPS", "AWS", "Cloudflare"] },
+  {
+    category: "Observability",
+    items: ["Prometheus", "Grafana", "Loki", "Promtail"],
+  },
+  {
+    category: "Cloud / Hosting",
+    items: ["Bare-metal VPS", "AWS", "Cloudflare"],
+  },
   {
     category: "Concepts",
     items: [
@@ -142,8 +165,10 @@ export const projects: Project[] = [
     name: "LPP Agro Marketplace",
     client: "LPP Agro Nusantara",
     description:
-      "Internal B2B marketplace connecting farmers and corporate buyers. Built in a 4-person team on a single Next.js codebase (API routes + PostgreSQL); delivered seller onboarding, order management, and buyer and admin dashboards.",
+      "Internal B2B marketplace connecting farmers and corporate buyers. Delivered seller onboarding, order management, and buyer and admin dashboards.",
     tags: ["Next.js", "PostgreSQL", "API Routes"],
+    url: "https://argobisnis.web.id/",
+    cover: "/lpp.webp",
   },
   {
     name: "Heaven Marketplace",
@@ -151,6 +176,8 @@ export const projects: Project[] = [
     description:
       "Games marketplace for trading game accounts, boosting services, and top-ups across seller, buyer, and admin roles. Built the full stack including an escrow workflow, payment-gateway integration, top-up, and dispute resolution.",
     tags: ["Next.js", "PostgreSQL", "Payments", "Escrow"],
+    url: "https://heavenmarket.argobisnis.web.id/",
+    cover: "/heavenmarket.webp",
   },
   {
     name: "SITAMA",
@@ -158,6 +185,8 @@ export const projects: Project[] = [
     description:
       "Internal organization platform. Owned the backend and DevOps: designed the Hasura GraphQL schema and permissions, handled file storage with MinIO, and migrated the server to a self-managed VPS.",
     tags: ["Next.js", "Hasura", "GraphQL", "MinIO", "Nhost"],
+    url: "https://sitama.tabligh.id/",
+    cover: "/sitama.webp",
   },
   {
     name: "KTA Muhammadiyah",
@@ -165,11 +194,26 @@ export const projects: Project[] = [
     description:
       "Flagship digital membership platform that issued 45,687 member cards. Built full-stack on a Clean Architecture foundation with a Laravel + Express.js backend.",
     tags: ["Laravel", "Express.js", "PostgreSQL", "Redis", "RabbitMQ"],
+    url: "https://satu.muhammadiyah.or.id/",
+    cover: "/dummies-project-cover.webp",
   },
 ];
 
 export const contacts: ContactLink[] = [
   { label: "Email", href: "mailto:zulkarnen706@gmail.com", kind: "email" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/zulkarnen/", kind: "linkedin" },
-  { label: "GitHub", href: "https://github.com/zulkarnen-force/", kind: "github" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/zulkarnen/",
+    kind: "linkedin",
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/zulkarnen-force/",
+    kind: "github",
+  },
+  {
+    label: "Medium",
+    href: "https://medium.com/@zulkarnen-force",
+    kind: "medium",
+  },
 ];
