@@ -1,0 +1,7 @@
+services:
+  web:
+    build:
+      context: .
+    image: zulkarnen-cv
+    ports:
+      - "3000:3000"

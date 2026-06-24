@@ -1,0 +1,15 @@
+services:
+  web:
+    build:
+      context: .
+      target: deps
+    command: sh -c "bun install && bun run dev"
+    environment:
+      - NODE_ENV=development
+      - NEXT_TELEMETRY_DISABLED=1
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - "3000:3000"
