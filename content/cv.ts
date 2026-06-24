@@ -38,7 +38,7 @@ export const profile: Profile = {
   name: "Zulkarnen",
   title: "Software Engineer",
   tagline:
-    "Full-stack engineer with 3+ years delivering end-to-end web and mobile platforms — from Next.js frontends to Go, Node.js, and Laravel backends. 12+ production applications shipped, including a 45,687-member digital membership platform.",
+    "Full-stack software engineer with 3+ years building end-to-end web and mobile platforms. Go, Node.js, Laravel, Next.js, and a strong DevOps foundation.",
   location: "Yogyakarta, Indonesia",
   cvPdfPath: "/cv.pdf",
 };
