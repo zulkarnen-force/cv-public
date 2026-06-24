@@ -1470,7 +1470,7 @@ coverage
 # --- deps: install dependencies ---
 FROM oven/bun:1 AS deps
 WORKDIR /app
-COPY package.json bun.lockb ./
+COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
 # --- build: compile the Next.js app ---
