@@ -30,7 +30,8 @@ Both serve on http://localhost:3000.
 ## Content
 
 All CV content lives in `content/cv.ts` — edit there. Replace `public/cv.pdf` with the
-real resume; the Hero "Download CV" button links to it.
+real resume; the Hero "Download CV" button links to it. Before deploying, also add a real
+`public/og-image.png` and set the actual domain in `metadataBase` in `app/layout.tsx`.
 
 ## Project layout
 
