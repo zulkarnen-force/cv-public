@@ -29,7 +29,7 @@ export interface Project {
 export interface ContactLink {
   label: string;
   href: string;
-  kind: "email" | "whatsapp" | "linkedin" | "github";
+  kind: "email" | "linkedin" | "github";
 }
 
 export const profile: Profile = {
@@ -170,7 +170,6 @@ export const projects: Project[] = [
 
 export const contacts: ContactLink[] = [
   { label: "Email", href: "mailto:zulkarnen706@gmail.com", kind: "email" },
-  { label: "WhatsApp", href: "https://wa.me/6285722382371", kind: "whatsapp" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/zulkarnen/", kind: "linkedin" },
   { label: "GitHub", href: "https://github.com/zulkarnen-force/", kind: "github" },
 ];
